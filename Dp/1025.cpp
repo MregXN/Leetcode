@@ -25,4 +25,26 @@
 // 提示：
 
 // 1 <= N <= 1000
-1
+
+
+class Solution {
+public:
+    bool divisorGame(int N) {
+
+    vector<int> temp(N+1,0);
+    for(int k=1;k<=N;k++)
+    {
+        for(int m=1;m<k;m++)
+        {
+            if(k%(k-m)==0 && temp[m]==0)
+            {
+                temp[k]=1;
+                break;
+            }
+        }
+    }
+    return temp[N];
+
+}
+};
+
