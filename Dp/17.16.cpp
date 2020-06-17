@@ -19,3 +19,52 @@
 // 输入： [2,1,4,5,3,1,1,3]
 // 输出： 12
 // 解释： 选择 1 号预约、 3 号预约、 5 号预约和 8 号预约，总时长 = 2 + 4 + 3 + 3 = 12。
+
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+
+class Solution {
+public:
+    int massage(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 1 )  return nums[0];
+        else if (n == 2 ) return max(nums[0], nums[1]);
+        else if (n == 0 ) return 0;
+
+        int *dp = new int[n]; 
+        dp[0] = nums[0];
+        dp[1] = max(nums[0], nums[1]);
+
+        for(int i = 2 ; i < n ; i ++ )  dp[i] = max( dp [i-1] , dp[i-2] + nums[i]);
+
+        int result = dp[n-1];
+        delete[] dp;
+        return result;
+    }
+};
+
+
+int main(){
+    string input;
+    vector<int> nums;
+    Solution s;
+
+    getline(cin  , input , '\n');
+
+    for (int i = 0 ; i < input.size(); i ++) if(isdigit(input[i])) nums.push_back(input[i] - '0');
+
+  //  for(int i = 0 ; i < nums.size(); i ++)  cout << nums[i] << endl;    
+
+    cout << s.massage(nums) << endl;
+
+    return 0 ; 
+}
+
+
+
