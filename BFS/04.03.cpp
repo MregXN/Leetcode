@@ -32,7 +32,7 @@ public:
             for(int i = 0 ; i < size ; i ++)
             {
                 TreeNode* front =  q.front();
-                if(!i) h->val = front->val
+                if(!i) h->val = front->val;
                 else
                 {
                     ListNode* cur = new ListNode(front->val);
